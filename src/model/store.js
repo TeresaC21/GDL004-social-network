@@ -1,13 +1,12 @@
 import {
-  validateEmail
+  validateEmail,
 } from '../controller/authHandler.js';
 
-export const model = {}
+export const model = {};
 
 // Crear nueva cuenta de correo
 export function registerAccount(event) {
   event.preventDefault();
-
   const email = document.querySelector('#formInputEmail-reg').value;
   const emailValidationResult = validateEmail(email);
   const password = document.querySelector('#formInputPassw-reg').value;
@@ -33,9 +32,7 @@ export function registerAccount(event) {
         // [END_EXCLUDE]
       });
   } else {
-    (emailValidationResult === false);
     window.location.hash = '#/register';
-   
     alert('Please enter a valid email');
   }
 }
@@ -43,7 +40,6 @@ export function registerAccount(event) {
 // Iniciar sesión
 export function enterUser(event) {
   event.preventDefault();
-
   const email = document.querySelector('#formInputEmail').value;
   const emailValidationResult = validateEmail(email);
   const password = document.querySelector('#formInputPassw').value;
@@ -51,36 +47,35 @@ export function enterUser(event) {
 
   if (emailValidationResult === true) {
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then ((user) => {
+      .then((user) => {
         console.log(user);
         window.location.hash = '#/home';
       })
       .catch((error) => {
-    // Handle Errors here.
-    window.location.hash = '#/welcome';
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    if (emailValidationResult === false) {
-      window.location.hash = '#/welcome';
-      alert('Please enter an email');
-    } else if (password === false) {
-      window.location.hash = '#/welcome';
-      alert('Please enter the password');
-    
-    }
-    console.log('funciona model/store ENTER');
-  });
-}
+        // Handle Errors here.
+        window.location.hash = '#/welcome';
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (emailValidationResult === false) {
+          window.location.hash = '#/welcome';
+          alert('Please enter an email');
+          window.location.hash = '#/welcome';
+          alert('Please enter the password');
+        }
+        console.log('funciona model/store ENTER');
+      });
+  }
+
 
   /*
-  
+
   */
-  /* 
+  /*
   const userRegistered = event.target.email.value;
   const passwordUserRegistered = event.target.password.value;
 
   firebase.auth().signInWithEmailAndPassword(userRegistered, passwordUserRegistered)
-    .then 
+    .then
     .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
@@ -175,7 +170,38 @@ export const downPost = () => db.collection('posts').get()
     <div>
     <h1>${doc.id}</h1>
     </div>
-    `
+    
+    `;
+
       console.log(`${doc.id} => ${doc.data()}`);
     });
   });
+
+/*
+export function enterUser() {
+
+  const email = document.querySelector('#formInputEmail').required;
+  const password = document.querySelector('#formInputPassw').required;
+  const emailValidationResult = validateEmail(email.value);
+  const passValidationResult = validateEmail(password.value);
+
+  if (emailValidationResult === false) {
+    //let empty = document.querySelector('#containerEmpty');
+    alert('Please enter the fddd');
+  }
+  if (password === false) {
+    alert('Please enter the password');
+  }
+  console.log(emailValidationResult);
+  console.log('funciona model/store ENTER');
+
+  firebase.auth().signInWithEmailAndPassword(emailValidationResult, passValidationResult)
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode);
+    console.log(errorMessage);
+
+});
+*/
