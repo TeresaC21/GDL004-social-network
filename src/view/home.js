@@ -1,6 +1,3 @@
-import {
-  addPost,
-} from '../model/store.js';
 
 export default (user) => {
   const viewPost = document.createElement('div');

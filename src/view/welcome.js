@@ -1,7 +1,3 @@
-import {
-  enterUser,
-} from '../model/store.js';
-
 
 export default () => {
   const viewWelcome = document.createElement('div');
@@ -14,19 +10,16 @@ export default () => {
       <button class="buttons btnreg" type="submit" id="register"><a href="#/register">regístrate</a></button></br></br>
     <div id=containerEmpty>
     </div>
-
    </form>`;
 
-  const btn = viewWelcome.querySelector('#btn-email');
-  btn.addEventListener('click', enterUser);
-
+  //const btn = viewWelcome.querySelector('#btn-email');
+  //btn.addEventListener('click', enterUser);
   viewWelcome.classList.add('d-flex','justify-content-center','align-items-center','flex-direction-column','vh-100');
   // document.getElementById('form-create').appendChild(viewWelcome);
   return viewWelcome;
 };
 
 /*
-
   const buttonFacebook = document.createElement('div');
   const domString = '<div class="fb-login-button" data-width="" data-size="medium" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="true"></div>';
   buttonFacebook.innerHTML = domString;

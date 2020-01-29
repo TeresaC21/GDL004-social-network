@@ -6,6 +6,8 @@ export const model = {}
 
 // Crear nueva cuenta de correo
 export function registerAccount(event) {
+  event.preventDefault();
+
   const email = document.querySelector('#formInputEmail-reg').value;
   const emailValidationResult = validateEmail(email);
   const password = document.querySelector('#formInputPassw-reg').value;
@@ -19,7 +21,6 @@ export function registerAccount(event) {
       .catch((error) => {
         // Handle Errors here.
         window.location.hash = '#/register';
-        event.preventDefault();
         const errorCode = error.code;
         const errorMessage = error.message;
         // [START_EXCLUDE]
@@ -34,13 +35,15 @@ export function registerAccount(event) {
   } else {
     (emailValidationResult === false);
     window.location.hash = '#/register';
-    event.preventDefault();
+   
     alert('Please enter a valid email');
   }
 }
 
 // Iniciar sesión
 export function enterUser(event) {
+  event.preventDefault();
+
   const email = document.querySelector('#formInputEmail').value;
   const emailValidationResult = validateEmail(email);
   const password = document.querySelector('#formInputPassw').value;
@@ -63,16 +66,11 @@ export function enterUser(event) {
     } else if (password === false) {
       window.location.hash = '#/welcome';
       alert('Please enter the password');
-      event.preventDefault();
+    
     }
     console.log('funciona model/store ENTER');
   });
 }
-
-
-
-
-  
 
   /*
   
@@ -101,18 +99,16 @@ export function infoUser() {
       console.log('existe usuario activo');
     } else {
       console.log('no existe usuario activo');
-      // User is signed out.
-      // ...
     }
   });
 }
+
 // Datos del usuario
 export function currentUser() {
   infoUser();
   const user = firebase.auth().currentUser;
   return user;
 }
-
 
 // Cerrar sesión
 export function closed() {
@@ -175,44 +171,11 @@ export const addPost = (newPost, name) => {
 export const downPost = () => db.collection('posts').get()
   .then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-
-
       `
     <div>
     <h1>${doc.id}</h1>
     </div>
-    
     `
-
       console.log(`${doc.id} => ${doc.data()}`);
     });
   });
-
-/*
-export function enterUser() {
-
-  const email = document.querySelector('#formInputEmail').required;
-  const password = document.querySelector('#formInputPassw').required;
-  const emailValidationResult = validateEmail(email.value);
-  const passValidationResult = validateEmail(password.value);
-
-  if (emailValidationResult === false) {
-    //let empty = document.querySelector('#containerEmpty');
-    alert('Please enter the fddd');
-  }
-  if (password === false) {
-    alert('Please enter the password');
-  }
-  console.log(emailValidationResult);
-  console.log('funciona model/store ENTER');
-
-  firebase.auth().signInWithEmailAndPassword(emailValidationResult, passValidationResult)
-  .catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode);
-    console.log(errorMessage);
-
-});
-*/

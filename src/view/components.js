@@ -33,7 +33,7 @@ const vista = {
     const form = document.getElementById('form-emailEnter');
     console.log(form);
 
-    form.addEventListener('submit', (e) => {
+    /*form.addEventListener('submit', (e) => {
       e.preventDefault();
       const newEnter = {
         email: form.email.value,
@@ -43,7 +43,7 @@ const vista = {
       form.reset();
       //console.log();
       //controller.agregarMarcador(newEnter);
-    })
+    }) */
   },
 
   initRegi: () => {
@@ -60,10 +60,6 @@ const vista = {
       });*/
   }
 }
-/*
-const btn = viewPost.querySelector('#btn-addPost');
-btn.addEventListener('click', addPost);
-console.log('desde wieW HOME');*/
 
 export {
   components,
